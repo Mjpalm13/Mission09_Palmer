@@ -1,6 +1,3 @@
-import './App.css'
-import BookList from './BookList'
-
 import "./App.css";
 // Import all of the JSON file data into data variable to be used
 import data from "./CollegeBasketballTeams.json";
@@ -57,12 +54,8 @@ function TeamList() {
 
 // Run the welcome function and receive the output of the TeamList each time it has a new team object
 function App() {
-  
   return (
     <>
-      <BookList />
-    </>
-  )
       <Welcome />
       <TeamList />
     </>
