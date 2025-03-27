@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+// Import all of the JSON file data into data variable to be used
+import data from "./CollegeBasketballTeams.json";
 
-function App() {
-  const [count, setCount] = useState(0);
+const teams = data.teams;
 
+// Welcome component to explain what's going on
+function Welcome() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Hello, world!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Welcome to Mission 9!</h1>
+      <h2>
+        This assignment entails printing out information on numerous NCAA teams, specifically the name of the school, the mascot, and where the school is located
+      </h2>
+      <br />
     </>
-  )
+  );
 }
 
-export default App
+// Setup team card to show the data in a particular way
+function Team({
+  school,
+  name,
+  city,
+  state,
+}: {
+  school: string;
+  name: string;
+  city: string;
+  state: string;
+}) {
+  return (
+    <>
+      <h3>{school}</h3>
+      <h4>Mascot: {name}</h4>
+      <h4>
+        {city}, {state}
+      </h4>
+      <br />
+    </>
+  );
+}
+
+// Parse through each team in the JSON file represented by teams and make each one a team item
+function TeamList() {
+  return (
+    <>
+      {teams.map((singleTeam) => (
+        <Team {...singleTeam} />
+      ))}
+    </>
+  );
+}
+
+// Run the welcome function and receive the output of the TeamList each time it has a new team object
+function App() {
+  return (
+    <>
+      <Welcome />
+      <TeamList />
+    </>
+  );
+}
+
+export default App;
